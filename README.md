@@ -4,6 +4,9 @@ this api is used for testing purposes
 To run:
 ```bash
 go run .
+
+#with docker
+docker rm dummy-api; docker run -p 7000:7000 --name dummy-api -it ghcr.io/elhmn/dummy-api:d5f568d3b3ed9bd5cf20fffe53ac96777d6ad72d
 ```
 
 test:
