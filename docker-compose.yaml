@@ -1,0 +1,24 @@
+services:
+  otel-datadog:
+    image: datadog/agent:latest
+    pid: host
+    ports:
+      - "5000:5000"
+      - "5003:5003"
+      - "8125:8125"
+      - "6162:6162"
+      - "8126:8126"
+      - "4317:4317"
+      - "4318:4318"
+    environment:
+      - DD_API_KEY=e194f41727818c516517e8d551a36eaf
+      - DD_SITE=datadoghq.eu
+      - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+      - DD_APM_ENABLED=true
+      - DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_GRPC_ENDPOINT=0.0.0.0:4317
+      - DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_HTTP_ENDPOINT=0.0.0.0:4318
+      - DD_OTLP_CONFIG_TRACES_ENABLED=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
